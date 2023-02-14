@@ -51,7 +51,7 @@
                                         <td>@Html.DisplayFor(x => item.Descripcion)</td>
 
                                         <td>
-                                            <a class="btn btn-warning" asp-action="Editar" > <i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                            <a class="btn btn-warning" asp-action="Editar" asp-route-id=@item.PkServicio > <i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                             <a class="btn btn-danger" asp-action="Editar" > <i class="fa-solid fa-trash"></i> Eliminar</a>
 
                                         </td>

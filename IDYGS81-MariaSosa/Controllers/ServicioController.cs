@@ -24,13 +24,13 @@ namespace IDYGS81_MariaSosa.Controllers
         }
 
         [HttpGet]
-        public IActionResult Crear ()
+        public IActionResult Crear()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Crear (Servicio request)
+        public async Task<IActionResult> Crear(Servicio request)
         {
             try
             {
@@ -40,10 +40,10 @@ namespace IDYGS81_MariaSosa.Controllers
                 servicio.Descripcion = request.Descripcion;
 
                 _context.Servicios.Add(servicio);
-                await _context.SaveChangesAsync();  
+                await _context.SaveChangesAsync();
 
 
-                return RedirectToAction(nameof(Index));   
+                return RedirectToAction(nameof(Index));
 
 
 
@@ -51,9 +51,29 @@ namespace IDYGS81_MariaSosa.Controllers
             catch (Exception ex)
             {
 
-                throw new Exception("Surgio un error " +ex.Message);
+                throw new Exception("Surgio un error " + ex.Message);
             }
 
         }
+
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+
+            try
+            {
+                var servicio = _context.Servicios.Find(id);
+
+                return View(servicio);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Surgio un error: "+ex.Message);
+            }
+
+        }
+
     }
 }
