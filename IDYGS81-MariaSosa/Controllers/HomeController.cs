@@ -1,4 +1,5 @@
-﻿using IDYGS81_MariaSosa.Models;
+﻿using IDYGS81_MariaSosa.Context;
+using IDYGS81_MariaSosa.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,17 @@ namespace IDYGS81_MariaSosa.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var response = _context.Servicios.ToList();
+            return View(response);
         }
 
         public IActionResult Privacy()
